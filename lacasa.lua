@@ -9842,16 +9842,16 @@ x = x + 1
 database:setex(bot_id.."animation:ban"..msg.chat_id_..":"..msg.sender_user_id_,5,x)
 end
 end  
-if text == "تعطيل ردود السورس" and Manager(msg) then
-send(msg.chat_id_, msg.id_, ' ٭ تم تعطيل ردود السورس')
-database:set(bot_id.."rdod:api"..msg.chat_id_,"close")
+if (text == "تعطيل ايباي الردود" or text == "تعطيل ردود السورس") and Manager(msg) then
+send(msg.chat_id_, msg.id_, ' ٭ تم تعطيل ردود سورس ')
+database:set(bot_id.."rdod:api:revor"..msg.chat_id_,"close")
 end
-if text == "تفعيل ردود السورس" and Manager(msg) then
-send(msg.chat_id_, msg.id_,' ٭ تم تفعيل ردود السورس')
-database:set(bot_id.."rdod:api"..msg.chat_id_,"open")
+if (text == "تفعيل ايباي الردود" or text == "تفعيل ردود السورس") and Manager(msg) then
+send(msg.chat_id_, msg.id_,' ٭ تم تفعيل ردود سورس ')
+database:set(bot_id.."rdod:api:revor"..msg.chat_id_,"open")
 end
-if text and database:get(bot_id.."rdod:api"..msg.chat_id_) == "open" then
-gk = http.request('http://167.71.14.2/rdod.php?text='..URL.escape(text)..'')
+if text and database:get(bot_id.."rdod:api:revor"..msg.chat_id_) == "open" then
+gk = require("socket.http").request('http://167.71.14.2/rdod.php?text='..URL.escape(text))
 br = JSON.decode(gk)
 send(msg.chat_id_, msg.id_,br)
 end
@@ -10501,7 +10501,7 @@ name = string.gsub(name,'🙍‍♂️','🙎‍♂️🙎‍♂️🙎‍♂️
 name = string.gsub(name,'🧖‍♂️','🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♂️🧖‍♀️🧖‍♀️🧖‍♀️🧖‍♀️')
 name = string.gsub(name,'👬','👭👭👭👭👭👬👭👭👭')
 name = string.gsub(name,'👨‍👨‍👧','👨‍👨‍👦👨‍👨‍👦👨‍👨‍👦👨‍👨‍👦👨‍👨‍👧👨‍👨‍👦👨‍👨‍👦')
-name = string.gsub(name,'🕒','🕒🕒🕒🕒🕒🕒🕓🕒??🕒')
+name = string.gsub(name,'🕒','🕒🕒🕒🕒🕒🕒🕓🕒🕒🕒')
 name = string.gsub(name,'🕤','🕥🕥🕥🕥🕥🕤🕥🕥🕥')
 name = string.gsub(name,'⌛️','⏳⏳⏳⏳⏳⏳⌛️⏳⏳')
 name = string.gsub(name,'📅','📆📆📆📆📆📆📅📆📆')
@@ -10761,11 +10761,11 @@ end,nil)
 elseif DAata and DAata:match('mp3/(.*)/@m(%d+)') then
 local kkp = {string.match(DAata,"^mp3/(.*)/@m(%d+)$")}
 DeleteMessage(Chat_id,{[0] = Msg_id})    
-http.request("http://167.71.14.2/ytd.php?url="..kkp[1].."&token="..token.."&chat="..data.chat_id_.."&rep="..kkp[2].."&type=mp3")
+require("socket.http").request("http://167.71.14.2/ytd.php?url="..kkp[1].."&token="..token.."&chat="..data.chat_id_.."&rep="..kkp[2].."&type=mp3")
 elseif DAata and DAata:match('mp4/(.*)/@m(%d+)') then
-local kkp = {string.match(Text,"^mp4/(.*)/@m(%d+)$")}
+local kkp = {string.match(DAata,"^mp4/(.*)/@m(%d+)$")}
 DeleteMessage(Chat_id,{[0] = Msg_id})    
-http.request("http://167.71.14.2/ytd.php?url="..kkp[1].."&token="..token.."&chat="..data.chat_id_.."&rep="..kkp[2].."&type=mp4")
+require("socket.http").request("http://167.71.14.2/ytd.php?url="..kkp[1].."&token="..token.."&chat="..data.chat_id_.."&rep="..kkp[2].."&type=mp4")
 end      
 if DAata == '/help1' then
 if not Mod(data) then
@@ -10911,7 +10911,7 @@ keyboard.inline_keyboard = {
 {{text = '⓽', callback_data="/help9"},{text = '⓵⓪', callback_data="/help10"}},
 {{text = 'الاوامر الرئيسيه', callback_data="/help"}},
 {{text = 'ᴅᴇᴠᴇʟᴏᴘᴇʀ', url = "https://t.me/el_pro_f"}},
-{{text = '𝙇𝘼𝘾𝘼𝙎𝙎𝘼 𝙎𝙊𝙐𝙍𝘾𝙀', url="t.me/lacassasource"}},
+{{text = '𝙇𝘼??𝘼𝙎𝙎𝘼 𝙎𝙊𝙐𝙍𝘾𝙀', url="t.me/lacassasource"}},
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
