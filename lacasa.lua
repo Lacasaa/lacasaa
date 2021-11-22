@@ -5298,22 +5298,7 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end  
----------by-sonic----
-if text == ("تحكم") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) and GetChannelMember(msg) then  
-function start_function(extra, result, success)
-local keyboard = {
-{{text = '⋄ حظر',callback_data=msg.sender_user_id_.."been"..result.sender_user_id_},{text = '⋄ الغاء حظر',callback_data=msg.sender_user_id_.."unbeen"..result.sender_user_id_}},
-{{text = '⋄ كتم',callback_data=msg.sender_user_id_.."Mut"..result.sender_user_id_},{text = '⋄ الغاء كتم',callback_data=msg.sender_user_id_.."unMut"..result.sender_user_id_}},
-{{text = '⋄ تقييد',callback_data=msg.sender_user_id_.."restrict"..result.sender_user_id_},{text = '⋄ الغاء تقييد',callback_data=msg.sender_user_id_.."unrestrict"..result.sender_user_id_}},
-{{text = '⋄ رفع رتبه',callback_data=msg.sender_user_id_.."UpS"..result.sender_user_id_},{text = '⋄ تنزيل رتبه',callback_data=msg.sender_user_id_.."unUpS"..result.sender_user_id_}},
-}
-local msg_id = msg.id_/2097152/0.5
-send_inline_key(msg.chat_id_,"⋄︙اهلا بك يمكنك التحكم بالازرار اسفل .",nil,keyboard,msg_id)
-end
-tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
-return false
-end
----------by-sonic----
+
 if text == 'تنزيل الخولات' and Mod(msg) then
 database:del(bot_id..'Mote:User'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '❈︙تم مسح جميع الخولات')
@@ -6753,7 +6738,22 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-
+---------by-sonic----
+if text == ("تحكم") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then  
+function start_function(extra, result, success)
+local keyboard = {
+{{text = '⋄ حظر',callback_data=msg.sender_user_id_.."been"..result.sender_user_id_},{text = '⋄ الغاء حظر',callback_data=msg.sender_user_id_.."unbeen"..result.sender_user_id_}},
+{{text = '⋄ كتم',callback_data=msg.sender_user_id_.."Mut"..result.sender_user_id_},{text = '⋄ الغاء كتم',callback_data=msg.sender_user_id_.."unMut"..result.sender_user_id_}},
+{{text = '⋄ تقييد',callback_data=msg.sender_user_id_.."restrict"..result.sender_user_id_},{text = '⋄ الغاء تقييد',callback_data=msg.sender_user_id_.."unrestrict"..result.sender_user_id_}},
+{{text = '⋄ رفع رتبه',callback_data=msg.sender_user_id_.."UpS"..result.sender_user_id_},{text = '⋄ تنزيل رتبه',callback_data=msg.sender_user_id_.."unUpS"..result.sender_user_id_}},
+}
+local msg_id = msg.id_/2097152/0.5
+send_inline_key(msg.chat_id_,"⋄︙اهلا بك يمكنك التحكم بالازرار اسفل .",nil,keyboard,msg_id)
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
+return false
+end
+---------by-sonic----
 
 if text == ("رفع ادمن بكل الصلاحيات") and msg.reply_to_message_id_ ~= 0 and BasicConstructor(msg) then
 function start_function(extra, result, success)
